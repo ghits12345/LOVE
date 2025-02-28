@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How's Your Day?</title>
+    <style>
+      body {
+        background-color: #ffccd5;
+        text-align: center;
+        font-family: "Arial", sans-serif;
+        overflow: hidden;
+      }
+      h1 {
+        color: #ff4081;
+        margin-top: 50px;
+      }
+      .heart {
+        position: absolute;
+        color: #ff4081;
+        font-size: 24px;
+        animation: fall 5s linear infinite;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(0px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+      .love-btn {
+        background-color: #ff4081;
+        color: white;
+        padding: 15px 30px;
+        font-size: 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .love-btn:hover {
+        background-color: #e6005c;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>How's Your Day? 💖</h1>
+    <button class="love-btn" onclick="askDay()">Bagikan Perasaanmu</button>
+    <script>
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.classList.add("heart");
+        document.body.appendChild(heart);
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+
+      setInterval(createHeart, 300);
+
+      function askDay() {
+        let response = prompt("How was your day? 😊");
+        if (response) {
+          let sadWords = ["sedih", "buruk", "jelek", "menyedihkan", "capek", "stress", "ngeselin", "bad"];
+          let isSad = sadWords.some((word) => response.toLowerCase().includes(word));
+
+          if (isSad) {
+            alert("Kabari aku yaa, aku bakal ngedengerin kamu 💖");
+          } else {
+            alert("I'm happy to hear that! Sending you love 💕 kalau ada apa apa cerita yaa!");
+          }
+        } else {
+          alert("No matter what, you are loved! 💖");
+        }
+      }
+    </script>
+  </body>
+</html>
